@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '11.0'
+
+target 'HRMS' do
+
+pod 'MarqueeLabel/Swift'
+pod 'IQKeyboardManagerSwift'
+pod 'SideMenu'
+pod 'Alamofire'
+pod 'Kingfisher'
+pod 'SwiftyJSON'
+pod 'DropDown'
+
+ target 'HRMSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'HRMSUITests' do
+    # Pods for testing
+  end
+
+end

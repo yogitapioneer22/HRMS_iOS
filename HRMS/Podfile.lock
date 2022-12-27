@@ -1,0 +1,40 @@
+PODS:
+  - Alamofire (5.6.4)
+  - DropDown (2.3.13)
+  - IQKeyboardManagerSwift (6.5.10)
+  - Kingfisher (6.3.1)
+  - MarqueeLabel/Swift (3.2.1)
+  - SideMenu (6.5.0)
+  - SwiftyJSON (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - DropDown
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MarqueeLabel/Swift
+  - SideMenu
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - DropDown
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MarqueeLabel
+    - SideMenu
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+
+PODFILE CHECKSUM: fd3b3d4cd11bc4588b689799676c5f715ecceaa7
+
+COCOAPODS: 1.11.3

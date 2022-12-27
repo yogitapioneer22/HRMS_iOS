@@ -1,0 +1,6 @@
+module Pods_HRMS_HRMSUITests {
+  umbrella header "Pods-HRMS-HRMSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
