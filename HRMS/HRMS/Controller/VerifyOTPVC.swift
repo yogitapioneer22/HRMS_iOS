@@ -102,7 +102,7 @@ class VerifyOTPVC: UIViewController {
                                 
                                 
             let alert = UIAlertController(title: "Success!", message: message, preferredStyle: .alert)
-                present(alert, animated: true) {
+                                self.present(alert, animated: true) {
                                    sleep(5)
                                    alert.dismiss(animated: true)
                                 }
