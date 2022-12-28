@@ -53,9 +53,6 @@ class HomeVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSou
         self.view4.layer.borderWidth = 1
         self.view4.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         
-        
-        // test git
-        // test git
 
     }
     @IBAction func sideMenuAction(_ sender: Any) {

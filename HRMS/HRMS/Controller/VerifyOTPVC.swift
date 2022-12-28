@@ -100,18 +100,28 @@ class VerifyOTPVC: UIViewController {
                             
                             if status == "200"{
                                 
-                        let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
                                 
-                                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-                                    self.present(nextViewController, animated:true, completion:nil)
-                                    
-                                }))
-                                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
-                                    refreshAlert .dismiss(animated: true, completion: nil)
-                                }))
-                                self.present(refreshAlert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Success!", message: message, preferredStyle: .alert)
+                present(alert, animated: true) {
+                                   sleep(5)
+                                   alert.dismiss(animated: true)
+                                }
+                                
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+            self.present(nextViewController, animated:true, completion:nil)
+//                        let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+//
+//                                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+//                                    self.present(nextViewController, animated:true, completion:nil)
+//
+//                                }))
+//                                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+//                                    refreshAlert .dismiss(animated: true, completion: nil)
+//                                }))
+//                                self.present(refreshAlert, animated: true, completion: nil)
                             }else{
                                 
                                 let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
