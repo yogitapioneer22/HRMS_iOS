@@ -1,16 +1,14 @@
 //
-//  OnboardingTableViewCell.swift
+//  LanguageListTableViewCell.swift
 //  HRMS
 //
-//  Created by Brijesh bhardwaj on 30/12/22.
+//  Created by Brijesh bhardwaj on 12/01/23.
 //
 
 import UIKit
 
-class OnboardingTableViewCell: UITableViewCell {
-    @IBOutlet weak var lblMenu: UILabel!
-    @IBOutlet weak var imgViewList: UIImageView!
-    @IBOutlet weak var imgStatus: UIImageView!
+class LanguageListTableViewCell: UITableViewCell {
+    @IBOutlet weak var lblList: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +18,7 @@ class OnboardingTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        // Configure the view for the selected state
     }
 
 }

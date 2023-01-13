@@ -1,37 +1,60 @@
 //
-//  PasscodeVC.swift
+//  AddressDetailsVC.swift
 //  HRMS
 //
-//  Created by Brijesh bhardwaj on 14/12/22.
+//  Created by Brijesh bhardwaj on 09/01/23.
 //
 
 import UIKit
 import Alamofire
 import SwiftyJSON
 
-class PasscodeVC: UIViewController ,CustomAlertDelegate{
-    func cancelButtonPressed(_ alert: ForgotPasswordView, alertTag: Int) {
-        print("Cancell")
-    }
+class AddressDetailsVC: UIViewController {
+    @IBOutlet weak var txtLocalAdd: UITextField!
     
-    
-    @IBOutlet weak var txtPass2: UITextField!
-    @IBOutlet weak var btnLogin: UIButton!
-    
-    @IBOutlet weak var txtPass4: UITextField!
-    @IBOutlet weak var txtPass3: UITextField!
-    @IBOutlet weak var txtPass1: UITextField!
-    @IBOutlet weak var btnPassword: UIButton!
+    @IBOutlet weak var btnCheckBox: UIButton!
+    @IBOutlet weak var txtPIN2: UITextField!
+    @IBOutlet weak var txtCity2: UITextField!
+    @IBOutlet weak var txtState2: UITextField!
+    @IBOutlet weak var txtPinCode: UITextField!
+    @IBOutlet weak var txtCity: UITextField!
+    @IBOutlet weak var txtState: UITextField!
+    @IBOutlet weak var txtPermanentAdd: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func logiAction(_ sender: Any) {
+    @IBAction func checkBoxAction(_ sender: Any) {
+        if btnCheckBox.isSelected {
+            btnCheckBox.isSelected = false
+            btnCheckBox.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
+            self.txtLocalAdd.text! = ""
+            self.txtState2.text! = ""
+            self.txtCity2.text! = ""
+            self.txtPIN2.text! = ""
+            
+        }else {
+            btnCheckBox.isSelected = true
+            btnCheckBox.setImage(#imageLiteral(resourceName: "square radio button green copy"), for: .normal)
+            self.txtLocalAdd.text! = txtPermanentAdd.text!
+            self.txtState2.text! = txtState.text!
+            self.txtCity2.text! = txtCity.text!
+            self.txtPIN2.text! = txtPinCode.text!
+        }
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OnboardingDetailsVC") as! OnboardingDetailsVC
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    @IBAction func saveAction(_ sender: Any) {
         if Reachability.isConnectedToNetwork() {
             print("Internet connection OK")
             DispatchQueue.main.async {
-                self.callLoginApi()
+                self.callAddsApi()
 
             }
         } else {
@@ -41,60 +64,26 @@ class PasscodeVC: UIViewController ,CustomAlertDelegate{
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func okButtonPressed(_ alert: ForgotPasswordView, alertTag: Int) {
-       print("OK Clicked")
-    }
-    
-    @IBAction func txt1Change(_ sender: Any) {
-        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
-               nextTextField.becomeFirstResponder()
-           }
-    }
-    @IBAction func txt2Change(_ sender: Any) {
-        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
-               nextTextField.becomeFirstResponder()
-           }
-    }
-    @IBAction func txt3Change(_ sender: Any) {
-        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
-               nextTextField.becomeFirstResponder()
-           }
-    }
-    @IBAction func txt4Change(_ sender: Any) {
-        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
-               nextTextField.becomeFirstResponder()
-           }
-    }
-    
-    @IBAction func forgotPasswordAction(_ sender: Any) {
-        
-        let customAlert = ForgotPasswordView()
-        customAlert.alertTitle = "Thank you"
-        customAlert.alertMessage = "Your order successfully done."
-        customAlert.alertTag = 1
-       // customAlert.statusImage = UIImage.init(named: "smiley")
-        customAlert.isCancelButtonHidden = true
-        customAlert.delegate = self
-        customAlert.show()
-
-    }
-    @IBAction func dontHaveAc(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        self.present(nextViewController, animated:true, completion:nil)
-    }
-    
-    func callLoginApi(){
-        let loginUrl = AppConstants().baseUrl + "Userlogin/loginwithpasscode"
+    func callAddsApi(){
+        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/addaddressdetail"
         let headers:HTTPHeaders = [
+          
         ]
         LoadingOverlay.shared.showOverlay(view: view)
-        let passcode = String(txtPass1.text! + txtPass2.text! + txtPass3.text! + txtPass4.text!)
+        let appToken =  UserDefaults.standard.string(forKey: "token") ?? "NA"
         let parameters = [
-                    "passcode": passcode,
-                    "device_token": "5555"
-                ] as? [String:AnyObject]
-        print(parameters)
+            "token": appToken,
+            "paddress": txtPermanentAdd.text!,
+            "p_state": txtState.text!,
+            "p_city": txtCity.text!,
+            "p_pincode": txtPinCode.text!,
+            "cadress": txtLocalAdd.text!,
+            "l_state": txtState2.text!,
+            "l_city": txtCity2.text!,
+            "l_pincode": txtPIN2.text!,
+            "is_sameaddress": "1"
+        ] as? [String:AnyObject]
+print(parameters)
         AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {
                     response in
             LoadingOverlay.shared.hideOverlayView()
@@ -104,10 +93,10 @@ class PasscodeVC: UIViewController ,CustomAlertDelegate{
                     case .success(let value):
                         print(response)
                         
-                 let statusCode = response.response?.statusCode
+                       let statusCode = response.response?.statusCode
                       print(statusCode)
                         
-                 let json = JSON(value)
+                let json = JSON(value)
                         print(json)
                         
                         let message = json["msg"].string
@@ -116,21 +105,20 @@ class PasscodeVC: UIViewController ,CustomAlertDelegate{
                         let emp_id = data["emp_id"].string
                         let email_id = data["email_id"].string
                         let phone = data["phone"].string
+                    
                         
-                        AppConstants().defaults.set(emp_id, forKey: "EmpId")
-                        AppConstants().defaults.set(email_id, forKey: "EmailId")
-                        AppConstants().defaults.set(phone, forKey: "Phone")
-                        
-                        print(status)
+                      print(status)
                             
-                        if status == "200"{
+                            if status == "200"{
                                 
                         let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
                                 
                         refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+                          //  refreshAlert .dismiss(animated: true, completion: nil)
+
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "VerifyOTPVC") as! VerifyOTPVC
-                                    self.present(nextViewController, animated:true, completion:nil)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "EmergencyDetailVC") as! EmergencyDetailVC
+                self.present(nextViewController, animated:true, completion:nil)
                                     
                                 }))
                         
@@ -166,4 +154,5 @@ class PasscodeVC: UIViewController ,CustomAlertDelegate{
                     }
                 }
 }
+
 }

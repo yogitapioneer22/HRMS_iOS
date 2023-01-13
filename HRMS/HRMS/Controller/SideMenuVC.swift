@@ -130,7 +130,7 @@ class SideMenuVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     }
     
     func logoutApi(){
-        let loginUrl = AppConstants().baseUrl + "Hrlogin/logout"
+        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/Joineelogout"
         
         let headers:HTTPHeaders = [
           
@@ -164,7 +164,9 @@ class SideMenuVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
 
                             refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                         //self.present(refreshAlert, animated: true, completion: nil)
-
+                                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+                                self.present(nextViewController, animated:true, completion:nil)
                                 
                             }))
                             refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in

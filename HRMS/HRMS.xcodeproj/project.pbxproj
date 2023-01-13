@@ -44,10 +44,30 @@
 		CB604E68294C428A0090C147 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB604E67294C428A0090C147 /* SideMenuVC.swift */; };
 		CB604E6A294C44E10090C147 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB604E69294C44E10090C147 /* SideMenuTableViewCell.swift */; };
 		CB604E6C294C4DA80090C147 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB604E6B294C4DA80090C147 /* MyProfileVC.swift */; };
+		CB654BE429701D0B00301D8A /* LanguageListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB654BE329701D0B00301D8A /* LanguageListVC.swift */; };
+		CB654BE629701D3A00301D8A /* LanguageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB654BE529701D3A00301D8A /* LanguageListTableViewCell.swift */; };
+		CB6B5E75296BDE2F00D85FB1 /* IntroOnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E74296BDE2E00D85FB1 /* IntroOnboardingVC.swift */; };
+		CB6B5E77296BE9EB00D85FB1 /* BasicDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E76296BE9EB00D85FB1 /* BasicDetailsVC.swift */; };
+		CB6B5E79296BEA1A00D85FB1 /* FamilyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E78296BEA1A00D85FB1 /* FamilyDetailsVC.swift */; };
+		CB6B5E7B296C1CFB00D85FB1 /* PersonalDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E7A296C1CFB00D85FB1 /* PersonalDetailsVC.swift */; };
+		CB6B5E7D296C210100D85FB1 /* EducationDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E7C296C210100D85FB1 /* EducationDetailsVC.swift */; };
+		CB6B5E7F296C212500D85FB1 /* AddressDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E7E296C212400D85FB1 /* AddressDetailsVC.swift */; };
+		CB6B5E81296C215300D85FB1 /* EmergencyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E80296C215300D85FB1 /* EmergencyDetailVC.swift */; };
+		CB6B5E83296C218200D85FB1 /* BAnkDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E82296C218200D85FB1 /* BAnkDetailsVC.swift */; };
+		CB6B5E85296C21A800D85FB1 /* ComplienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E84296C21A800D85FB1 /* ComplienceVC.swift */; };
+		CB6B5E87296C21C400D85FB1 /* Form11VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E86296C21C400D85FB1 /* Form11VC.swift */; };
+		CB6B5E89296C21E100D85FB1 /* PaymentWagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E88296C21E100D85FB1 /* PaymentWagesVC.swift */; };
+		CB6B5E8B296C220000D85FB1 /* BasicDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E8A296C220000D85FB1 /* BasicDetailVC.swift */; };
+		CB6B5E8D296C221C00D85FB1 /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E8C296C221C00D85FB1 /* AddressVC.swift */; };
+		CB6B5E8F296C223E00D85FB1 /* WitnessDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E8E296C223E00D85FB1 /* WitnessDetailsVC.swift */; };
+		CB6B5E91296C225700D85FB1 /* Form2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E90296C225700D85FB1 /* Form2VC.swift */; };
+		CB6B5E93296C3F8100D85FB1 /* GratuityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B5E92296C3F8100D85FB1 /* GratuityVC.swift */; };
 		CB6BD6EA294AE8A50056EAB8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BD6E9294AE8A50056EAB8 /* LoginVC.swift */; };
 		CB6BD6ED294AEAD40056EAB8 /* EmployeeIdLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BD6EB294AEAD40056EAB8 /* EmployeeIdLogin.swift */; };
 		CB6BD702294B30580056EAB8 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6BD700294B30580056EAB8 /* ForgotPasswordView.swift */; };
 		CB6BD703294B30580056EAB8 /* ForgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB6BD701294B30580056EAB8 /* ForgotPasswordView.xib */; };
+		CB6EDC9F295F14B400B3B74A /* OnboardingDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6EDC9E295F14B300B3B74A /* OnboardingDetailsVC.swift */; };
+		CB6EDCA1295F1AB800B3B74A /* OnboardingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6EDCA0295F1AB800B3B74A /* OnboardingTableViewCell.swift */; };
 		CB72BB0129502C9F0078D296 /* ResignationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72BAFF29502C9F0078D296 /* ResignationRequest.swift */; };
 		CB72BB0229502C9F0078D296 /* ResignationRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB72BB0029502C9F0078D296 /* ResignationRequest.xib */; };
 		CB72BB0529502CB50078D296 /* ResignationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72BB0329502CB50078D296 /* ResignationStatus.swift */; };
@@ -140,10 +160,30 @@
 		CB604E67294C428A0090C147 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		CB604E69294C44E10090C147 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		CB604E6B294C4DA80090C147 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
+		CB654BE329701D0B00301D8A /* LanguageListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageListVC.swift; sourceTree = "<group>"; };
+		CB654BE529701D3A00301D8A /* LanguageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageListTableViewCell.swift; sourceTree = "<group>"; };
+		CB6B5E74296BDE2E00D85FB1 /* IntroOnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroOnboardingVC.swift; sourceTree = "<group>"; };
+		CB6B5E76296BE9EB00D85FB1 /* BasicDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E78296BEA1A00D85FB1 /* FamilyDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E7A296C1CFB00D85FB1 /* PersonalDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E7C296C210100D85FB1 /* EducationDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E7E296C212400D85FB1 /* AddressDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E80296C215300D85FB1 /* EmergencyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyDetailVC.swift; sourceTree = "<group>"; };
+		CB6B5E82296C218200D85FB1 /* BAnkDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAnkDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E84296C21A800D85FB1 /* ComplienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplienceVC.swift; sourceTree = "<group>"; };
+		CB6B5E86296C21C400D85FB1 /* Form11VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form11VC.swift; sourceTree = "<group>"; };
+		CB6B5E88296C21E100D85FB1 /* PaymentWagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWagesVC.swift; sourceTree = "<group>"; };
+		CB6B5E8A296C220000D85FB1 /* BasicDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDetailVC.swift; sourceTree = "<group>"; };
+		CB6B5E8C296C221C00D85FB1 /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
+		CB6B5E8E296C223E00D85FB1 /* WitnessDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessDetailsVC.swift; sourceTree = "<group>"; };
+		CB6B5E90296C225700D85FB1 /* Form2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form2VC.swift; sourceTree = "<group>"; };
+		CB6B5E92296C3F8100D85FB1 /* GratuityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GratuityVC.swift; sourceTree = "<group>"; };
 		CB6BD6E9294AE8A50056EAB8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CB6BD6EB294AEAD40056EAB8 /* EmployeeIdLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeIdLogin.swift; sourceTree = "<group>"; };
 		CB6BD700294B30580056EAB8 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		CB6BD701294B30580056EAB8 /* ForgotPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordView.xib; sourceTree = "<group>"; };
+		CB6EDC9E295F14B300B3B74A /* OnboardingDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDetailsVC.swift; sourceTree = "<group>"; };
+		CB6EDCA0295F1AB800B3B74A /* OnboardingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTableViewCell.swift; sourceTree = "<group>"; };
 		CB72BAFF29502C9F0078D296 /* ResignationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignationRequest.swift; sourceTree = "<group>"; };
 		CB72BB0029502C9F0078D296 /* ResignationRequest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResignationRequest.xib; sourceTree = "<group>"; };
 		CB72BB0329502CB50078D296 /* ResignationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignationStatus.swift; sourceTree = "<group>"; };
@@ -309,6 +349,24 @@
 				CB72BB17295041070078D296 /* UpdateBankDetailsVC.swift */,
 				CB9B6AD82956D8190085CD57 /* VerifyOTPVC.swift */,
 				CBC52F432959DB9100C1C5A6 /* DispatchVC.swift */,
+				CB6EDC9E295F14B300B3B74A /* OnboardingDetailsVC.swift */,
+				CB6B5E74296BDE2E00D85FB1 /* IntroOnboardingVC.swift */,
+				CB6B5E76296BE9EB00D85FB1 /* BasicDetailsVC.swift */,
+				CB6B5E78296BEA1A00D85FB1 /* FamilyDetailsVC.swift */,
+				CB6B5E7A296C1CFB00D85FB1 /* PersonalDetailsVC.swift */,
+				CB6B5E7C296C210100D85FB1 /* EducationDetailsVC.swift */,
+				CB6B5E7E296C212400D85FB1 /* AddressDetailsVC.swift */,
+				CB6B5E80296C215300D85FB1 /* EmergencyDetailVC.swift */,
+				CB6B5E82296C218200D85FB1 /* BAnkDetailsVC.swift */,
+				CB6B5E84296C21A800D85FB1 /* ComplienceVC.swift */,
+				CB6B5E86296C21C400D85FB1 /* Form11VC.swift */,
+				CB6B5E88296C21E100D85FB1 /* PaymentWagesVC.swift */,
+				CB6B5E8A296C220000D85FB1 /* BasicDetailVC.swift */,
+				CB6B5E8C296C221C00D85FB1 /* AddressVC.swift */,
+				CB6B5E8E296C223E00D85FB1 /* WitnessDetailsVC.swift */,
+				CB6B5E90296C225700D85FB1 /* Form2VC.swift */,
+				CB6B5E92296C3F8100D85FB1 /* GratuityVC.swift */,
+				CB654BE329701D0B00301D8A /* LanguageListVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -350,6 +408,8 @@
 				CB72BB13295038DA0078D296 /* AplyLoanStatusView.swift */,
 				CB72BB14295038DA0078D296 /* AplyLoanStatusView.xib */,
 				CBC52F45295AD72800C1C5A6 /* PaySlipTableViewCell.swift */,
+				CB6EDCA0295F1AB800B3B74A /* OnboardingTableViewCell.swift */,
+				CB654BE529701D3A00301D8A /* LanguageListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -625,13 +685,17 @@
 				CB29125B294DEC4C00DE63CD /* ChangePasswordVC.swift in Sources */,
 				CB72BB0529502CB50078D296 /* ResignationStatus.swift in Sources */,
 				CB29125D294DF02A00DE63CD /* GeneratePasscodeVC.swift in Sources */,
+				CB654BE629701D3A00301D8A /* LanguageListTableViewCell.swift in Sources */,
 				CB785FF729473C5D00F6BE8B /* NotificationTableViewCell.swift in Sources */,
 				CB595654294748970003E55C /* SettingVC.swift in Sources */,
 				CB6BD6EA294AE8A50056EAB8 /* LoginVC.swift in Sources */,
+				CB6EDC9F295F14B400B3B74A /* OnboardingDetailsVC.swift in Sources */,
+				CB6B5E91296C225700D85FB1 /* Form2VC.swift in Sources */,
 				CB87FA58294F3AA70021D212 /* RaiseRequestVC.swift in Sources */,
 				CBB881BB2949B53500AEC5FB /* PasscodeVC.swift in Sources */,
 				CB87FA5A294F3B4D0021D212 /* TaskReminderVC.swift in Sources */,
 				CB291268294E0B5300DE63CD /* CourierStatusVC.swift in Sources */,
+				CB654BE429701D0B00301D8A /* LanguageListVC.swift in Sources */,
 				CB785FF32947241400F6BE8B /* HomeCollectionViewCell.swift in Sources */,
 				CB59565929474DD20003E55C /* CompanyInfoVC.swift in Sources */,
 				CB604E6C294C4DA80090C147 /* MyProfileVC.swift in Sources */,
@@ -639,16 +703,23 @@
 				CB291264294E0B2F00DE63CD /* NewCourierVC.swift in Sources */,
 				CB291278294E126500DE63CD /* WFHView.swift in Sources */,
 				CB72BB0D295038960078D296 /* AplyLoanView.swift in Sources */,
+				CB6B5E8F296C223E00D85FB1 /* WitnessDetailsVC.swift in Sources */,
 				CBC52F46295AD72800C1C5A6 /* PaySlipTableViewCell.swift in Sources */,
+				CB6B5E85296C21A800D85FB1 /* ComplienceVC.swift in Sources */,
 				CB72BB0A2950326F0078D296 /* ApplyLoanVC.swift in Sources */,
 				CB9B6AD72956D1AF0085CD57 /* Reachability.swift in Sources */,
+				CB6B5E81296C215300D85FB1 /* EmergencyDetailVC.swift in Sources */,
 				CB72BB0129502C9F0078D296 /* ResignationRequest.swift in Sources */,
+				CB6B5E75296BDE2F00D85FB1 /* IntroOnboardingVC.swift in Sources */,
 				CB87FA61294F45F90021D212 /* RemiderStatusView.swift in Sources */,
 				CB29125F294DF08C00DE63CD /* AboutUsVC.swift in Sources */,
 				CB29126C294E0F3F00DE63CD /* RaiseRequest.swift in Sources */,
+				CB6B5E7F296C212500D85FB1 /* AddressDetailsVC.swift in Sources */,
 				CB9B6AD52956D0320085CD57 /* AppConstants.swift in Sources */,
 				CB87FA56294F2DEE0021D212 /* PaySlipVC.swift in Sources */,
+				CB6B5E7B296C1CFB00D85FB1 /* PersonalDetailsVC.swift in Sources */,
 				CB72BB15295038DA0078D296 /* AplyLoanStatusView.swift in Sources */,
+				CB6B5E89296C21E100D85FB1 /* PaymentWagesVC.swift in Sources */,
 				CB59565D294762DC0003E55C /* NewJointRegister.swift in Sources */,
 				CB9B6AD92956D8190085CD57 /* VerifyOTPVC.swift in Sources */,
 				CB785FF129471A5D00F6BE8B /* HomeVC.swift in Sources */,
@@ -657,6 +728,7 @@
 				CB604E6A294C44E10090C147 /* SideMenuTableViewCell.swift in Sources */,
 				CB291273294E0F7900DE63CD /* PlaceRequestVC.swift in Sources */,
 				CB59565B29474E020003E55C /* CompanyInfoTableViewCell.swift in Sources */,
+				CB6B5E87296C21C400D85FB1 /* Form11VC.swift in Sources */,
 				CB87FA5D294F44160021D212 /* SetReminderView.swift in Sources */,
 				CB6BD6ED294AEAD40056EAB8 /* EmployeeIdLogin.swift in Sources */,
 				CBC52F442959DB9100C1C5A6 /* DispatchVC.swift in Sources */,
@@ -664,9 +736,17 @@
 				CB72BB18295041070078D296 /* UpdateBankDetailsVC.swift in Sources */,
 				CB6BD702294B30580056EAB8 /* ForgotPasswordView.swift in Sources */,
 				CB72BB0829502CE40078D296 /* ResignationVC.swift in Sources */,
+				CB6EDCA1295F1AB800B3B74A /* OnboardingTableViewCell.swift in Sources */,
+				CB6B5E7D296C210100D85FB1 /* EducationDetailsVC.swift in Sources */,
+				CB6B5E77296BE9EB00D85FB1 /* BasicDetailsVC.swift in Sources */,
 				CB604E68294C428A0090C147 /* SideMenuVC.swift in Sources */,
+				CB6B5E83296C218200D85FB1 /* BAnkDetailsVC.swift in Sources */,
 				CB29127C294E128100DE63CD /* WFHStatusView.swift in Sources */,
+				CB6B5E8B296C220000D85FB1 /* BasicDetailVC.swift in Sources */,
 				CB291261294E0AA400DE63CD /* DispatchCourierVC.swift in Sources */,
+				CB6B5E93296C3F8100D85FB1 /* GratuityVC.swift in Sources */,
+				CB6B5E79296BEA1A00D85FB1 /* FamilyDetailsVC.swift in Sources */,
+				CB6B5E8D296C221C00D85FB1 /* AddressVC.swift in Sources */,
 				CB547874294717270088DA62 /* SceneDelegate.swift in Sources */,
 				CB291270294E0F5300DE63CD /* RequestStatus.swift in Sources */,
 			);
@@ -843,27 +923,35 @@
 			baseConfigurationReference = F04CD3DB48658B91A836ADA3 /* Pods-HRMS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S76RRSUUU2;
+				CURRENT_PROJECT_VERSION = 1.4;
+				DEVELOPMENT_TEAM = VP89RC6PTG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HRMS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HRMS;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = poineer.HRMS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poineerESolution.HRMS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -872,27 +960,35 @@
 			baseConfigurationReference = F7FC45C83829716F86AE0D74 /* Pods-HRMS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S76RRSUUU2;
+				CURRENT_PROJECT_VERSION = 1.4;
+				DEVELOPMENT_TEAM = VP89RC6PTG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HRMS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HRMS;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = poineer.HRMS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poineerESolution.HRMS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

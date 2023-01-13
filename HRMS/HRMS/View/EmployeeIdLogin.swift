@@ -25,23 +25,54 @@ class EmployeeIdLogin: UIViewController {
 
         emailView.layer.borderWidth = 1
         emailView.layer.borderColor = UIColor.black.cgColor
-        emailView.layer.cornerRadius = 10
+        emailView.layer.cornerRadius = 8
         passwordView.layer.borderWidth = 1
         passwordView.layer.borderColor = UIColor.black.cgColor
-        passwordView.layer.cornerRadius = 10
+        passwordView.layer.cornerRadius = 8
         
-        self.btnLogin.layer.cornerRadius = 15
-        self.btnThumb.layer.cornerRadius = 15
-        self.btnNewJoinee.layer.cornerRadius = 15
+        self.btnLogin.layer.cornerRadius = 8
+        self.btnThumb.layer.cornerRadius = 8
+        self.btnNewJoinee.layer.cornerRadius = 8
     }
 
     @IBAction func showPassword(_ sender: Any) {
+      
+       
     }
     @IBAction func forgotPassword(_ sender: Any) {
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
 //        self.present(nextViewController, animated:true, completion:nil)
     }
+    
+    @IBAction func bySmsAction(_ sender: Any) {
+        btnByEmail.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
+        if btnBysms.isSelected {
+            btnBysms.isSelected = false
+            btnBysms.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
+    
+               }else {
+                   btnBysms.isSelected = true
+                  btnByEmail.isSelected = false
+                   
+                   btnBysms.setImage(#imageLiteral(resourceName: "square radio button green copy"), for: .normal)
+                }
+    }
+    @IBAction func byEmailAction(_ sender: Any) {
+       // self.gender  = "Female"
+        btnBysms.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
+        if btnByEmail.isSelected {
+            btnByEmail.isSelected = false
+            btnByEmail.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
+    
+               }else {
+                   
+                   btnBysms.isSelected = false
+                   btnByEmail.isSelected = true
+                   btnByEmail.setImage(#imageLiteral(resourceName: "square radio button green copy"), for: .normal)
+                }
+    }
+    
     @IBAction func thumbAction(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC

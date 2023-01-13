@@ -47,12 +47,47 @@ class VerifyOTPVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    @IBAction func txt1Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
+    
+    @IBAction func txt2Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
+    @IBAction func txt3Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
+    @IBAction func txt4Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
+    
+    @IBAction func txt5Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
+  
+    @IBAction func txt6Change(_ sender: Any) {
+        if let nextTextField = self.view.viewWithTag((sender as AnyObject).tag + 1) {
+               nextTextField.becomeFirstResponder()
+           }
+    }
     
     @IBAction func resendOtp(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         self.present(nextViewController, animated:true, completion:nil)
     }
+    
+    
     func verifyOtpApi(){
         let loginUrl = AppConstants().baseUrl + "Userlogin/otpverify"
         
@@ -99,29 +134,16 @@ class VerifyOTPVC: UIViewController {
                       print(status)
                             
                             if status == "200"{
-                                
-                                
-            let alert = UIAlertController(title: "Success!", message: message, preferredStyle: .alert)
-                                self.present(alert, animated: true) {
-                                   sleep(5)
-                                   alert.dismiss(animated: true)
-                                }
-                                
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-            self.present(nextViewController, animated:true, completion:nil)
-//                        let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
-//
-//                                refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-//                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-//                                    self.present(nextViewController, animated:true, completion:nil)
-//
-//                                }))
-//                                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
-//                                    refreshAlert .dismiss(animated: true, completion: nil)
-//                                }))
-//                                self.present(refreshAlert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+                    self.present(alert, animated: true) {
+                                       sleep(2)
+                                       alert.dismiss(animated: true)
+                                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                    self.present(nextViewController, animated:true, completion:nil)
+                                        })
                             }else{
                                 
                                 let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)

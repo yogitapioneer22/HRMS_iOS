@@ -10,7 +10,6 @@ pod 'Alamofire'
 pod 'Kingfisher'
 pod 'SwiftyJSON'
 pod 'DropDown'
-
  target 'HRMSTests' do
     inherit! :search_paths
     # Pods for testing
