@@ -9,7 +9,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 class NewJointRegister: UIViewController {
-
+    @IBOutlet weak var imgPassword: UIImageView!
+    
     @IBOutlet weak var btnSign: UIButton!
     @IBOutlet weak var btnShowPass: UIButton!
     @IBOutlet weak var txtPassword: UITextField!
@@ -24,28 +25,21 @@ class NewJointRegister: UIViewController {
         passwordView.layer.borderWidth = 1
         passwordView.layer.cornerRadius = 10
         btnSign.layer.cornerRadius = 10
-
+        self.txtPassword.isSecureTextEntry = true
         passwordView.layer.borderColor = UIColor.black.cgColor
     }
     @IBAction func showPassword(_ sender: Any) {
         if btnShowPass.isSelected {
             btnShowPass.isSelected = false
-            self.txtPassword.isSecureTextEntry = true
+            imgPassword.image = UIImage(named:"ic_passwordShow_eye")
 
-           // btnShowPass.setImage(#imageLiteral(resourceName: "square radio button black copy"), for: .normal)
-//            self.txtLocalAdd.text! = ""
-//            self.txtState2.text! = ""
-//            self.txtCity2.text! = ""
-//            self.txtPIN2.text! = ""
-            
+           // btnShowPass.setImage(#imageLiteral(resourceName: "ic_passwordHide_eye"), for: .normal)
+            self.txtPassword.isSecureTextEntry = true
         }else {
             btnShowPass.isSelected = true
+            imgPassword.image = UIImage(named:"ic_passwordHide_eye")
+           // btnShowPass.setImage(#imageLiteral(resourceName: "ic_passwordShow_eye"), for: .normal)
             self.txtPassword.isSecureTextEntry = false
-          //  btnShowPass.setImage(#imageLiteral(resourceName: "square radio button green copy"), for: .normal)
-//            self.txtLocalAdd.text! = txtPermanentAdd.text!
-//            self.txtState2.text! = txtState.text!
-//            self.txtCity2.text! = txtCity.text!
-//            self.txtPIN2.text! = txtPinCode.text!
         }
     }
     @IBAction func loginAction(_ sender: Any) {

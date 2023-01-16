@@ -8,19 +8,40 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import DropDown
 
 class EmergencyDetailVC: UIViewController {
     @IBOutlet weak var txtPhone: UITextField!
     
+    @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var txtRelation: UITextField!
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtName: UITextField!
+    
+    let relationDrop = DropDown()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
+        relation()
     }
     
+    @IBAction func txtRelationAction(_ sender: Any) {
+        if txtRelation.isSelected {
+            txtRelation.isSelected = true
+            relationDrop.hide()
+               }else {
+                   txtRelation.isSelected = false
+                   relationDrop.show()
+                }
+    }
+    func relation(){
+        relationDrop.dataSource = ["Mother", "Father","Brother","Sister","Wife","Husband","Son","Doughter","Uncle","Aunt","Friend"]
+        relationDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+         // print("Selected item: \(item) at index: \(index)")
+            self.txtRelation.text = item
+        }
+        relationDrop.width = 200
+    }
     @IBAction func back(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OnboardingDetailsVC") as! OnboardingDetailsVC
@@ -28,10 +49,50 @@ class EmergencyDetailVC: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        if Reachability.isConnectedToNetwork() {
+            print("Internet connection OK")
+            DispatchQueue.main.async {
+                self.callEmgApi()
+
+            }
+        } else {
+            print("Internet connection FAILED")
+            let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func updateUI(){
+        btnSave.layer.cornerRadius = 5.0
+        btnSave.layer.masksToBounds = true
+        //txtfName.setRightPaddingPoints(10)
+        txtPhone.setLeftPaddingPoints(10)
+        txtPhone.layer.cornerRadius = 5.0
+        txtPhone.layer.masksToBounds = true
+        txtPhone.layer.borderWidth = 1.0
+        txtPhone.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtRelation.setLeftPaddingPoints(10)
+        txtRelation.layer.cornerRadius = 5.0
+        txtRelation.layer.masksToBounds = true
+        txtRelation.layer.borderWidth = 1.0
+        txtRelation.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtAddress.setLeftPaddingPoints(10)
+        txtAddress.layer.cornerRadius = 5.0
+        txtAddress.layer.masksToBounds = true
+        txtAddress.layer.borderWidth = 1.0
+        txtAddress.layer.borderColor = UIColor.lightGray.cgColor
+        
+        txtName.setLeftPaddingPoints(10)
+        txtName.layer.cornerRadius = 5.0
+        txtName.layer.masksToBounds = true
+        txtName.layer.borderWidth = 1.0
+        txtName.layer.borderColor = UIColor.lightGray.cgColor
         
     }
-    func callAddsApi(){
-        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/addaddressdetail"
+    func callEmgApi(){
+        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/emergencycontactdetail"
         let headers:HTTPHeaders = [
           
         ]
@@ -39,15 +100,10 @@ class EmergencyDetailVC: UIViewController {
         let appToken =  UserDefaults.standard.string(forKey: "token") ?? "NA"
         let parameters = [
             "token": appToken,
-            "paddress": "1",
-            "p_state": "1",
-            "p_city": "1",
-            "p_pincode": "1",
-            "cadress": "1",
-            "l_state": "1",
-            "l_city": "1",
-            "l_pincode": "1",
-            "is_sameaddress": "1"
+            "name": "1",
+            "address": "1",
+            "phone": "1",
+            "relation": "1"
         ] as? [String:AnyObject]
 print(parameters)
         AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {

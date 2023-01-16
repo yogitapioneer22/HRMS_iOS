@@ -11,7 +11,7 @@ import SwiftyJSON
 import DropDown
 class BasicDetailsVC: UIViewController {
     @IBOutlet weak var btnGender: UIButton!
-    
+    @IBOutlet weak var btnMaritalStatus: UIButton!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var jMonthPicker: UIDatePicker!
     @IBOutlet weak var dojDatePicker: UIDatePicker!
@@ -51,14 +51,23 @@ class BasicDetailsVC: UIViewController {
     @IBOutlet weak var txtLevel: UITextField!
     @IBOutlet weak var txtDesignation: UITextField!
     @IBOutlet weak var txtFinancYear: UITextField!
+    
+    @IBOutlet weak var btnBloodGroup: UIButton!
+    @IBOutlet weak var btnReligion: UIButton!
+    
     var dob = ""
     var doj = ""
     var joingMonth = ""
     let genderDropDown = DropDown()
+    let marrital = DropDown()
     let lamguageDropDown = DropDown()
+    let   bGDrop = DropDown()
+    let   relisionDrop = DropDown()
     var languageList = [""]
-
+    var is_prefilled = ""
     var lagua = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,10 +77,46 @@ class BasicDetailsVC: UIViewController {
         callLanguageListApi()
         joineedetailApi()
          gender()
-    
-      
+        merital()
+        bgroup()
+        relision()
+        if is_prefilled == "1"{
+            dojDatePicker.isHidden = true
+            dobDatePicker.isHidden = true
+            
+        }
+        
+     //   dobDatePicker.alpha = 0.0
+        txtDOB.addTarget(self, action: #selector(dobTextField(_:)), for: .allEditingEvents)
+
 
     
+    }
+
+    @IBAction func bGAction(_ sender: Any) {
+        if txtBloodGroup.isSelected {
+            txtBloodGroup.isSelected = true
+            bGDrop.hide()
+               }else {
+                   txtBloodGroup.isSelected = false
+                   bGDrop.show()
+                }
+    }
+    
+    @IBAction func txtRelisionAction(_ sender: Any) {
+        if txtReligion.isSelected {
+            txtReligion.isSelected = true
+            relisionDrop.hide()
+               }else {
+                   txtBloodGroup.isSelected = false
+                   relisionDrop.show()
+                }
+    }
+    
+    @IBAction func dobTextField(_ sender: Any) {
+        dobDatePicker.isHidden = true
+        dobDatePicker.alpha = 1.0
+
     }
     func updateUI(){
         btnSave.layer.cornerRadius = 5.0
@@ -244,22 +289,62 @@ class BasicDetailsVC: UIViewController {
         txtAlergicTo.layer.masksToBounds = true
         txtAlergicTo.layer.borderWidth = 1.0
         txtAlergicTo.layer.borderColor = UIColor.lightGray.cgColor
-        validatePANCardNumber(txtPan.text!)
+        
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.txtLanguage.text = lagua
     }
+    
+    func validatePANCardNumber(_ strPANNumber : String) -> Bool{
+                let regularExpression = "[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                let panCardValidation = NSPredicate(format : "SELF MATCHES %@", regularExpression)
+                return panCardValidation.evaluate(with: strPANNumber)
+            }
     func gender(){
-        genderDropDown.dataSource = ["Male", "Female", "Other"]
+        genderDropDown.dataSource = ["Male", "Female"]
         genderDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
           print("Selected item: \(item) at index: \(index)")
             self.txtGender.text = item
         }
         genderDropDown.width = 200
     }
+    func merital(){
+        marrital.dataSource = ["UnMarried", "Married", "Widow","Widower","Divorced"]
+        marrital.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.txtMarritalStatus.text = item
+        }
+        marrital.width = 200
+    }
+    func relision(){
+        relisionDrop.dataSource = ["Hiduism", "Islam", "Christianity","Sikhism","Buddhism","Jainism","Zorostrianism","Judaism"]
+        relisionDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.txtReligion.text = item
+        }
+        relisionDrop.width = 200
+    }
+    func bgroup(){
+        bGDrop.dataSource = ["A-", "A+", "B-","B+","O+", "O-","AB+","AB-"]
+        bGDrop.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.txtBloodGroup.text = item
+        }
+        bGDrop.width = 200
+    }
     
+    @IBAction func maritalStatusAction(_ sender: Any) {
+        if btnMaritalStatus.isSelected {
+            btnMaritalStatus.isSelected = true
+            marrital.hide()
+               }else {
+                   btnMaritalStatus.isSelected = false
+                   marrital.show()
+                }
+    }
     @IBAction func languageAction(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LanguageListVC") as! LanguageListVC
@@ -276,11 +361,6 @@ class BasicDetailsVC: UIViewController {
         lamguageDropDown.width = 200
     }
     
-    func validatePANCardNumber(_ strPANNumber : String) -> Bool{
-            let regularExpression = "[A-Z]{5}[0-9]{4}[A-Z]{1}"
-            let panCardValidation = NSPredicate(format : "SELF MATCHES %@", regularExpression)
-            return panCardValidation.evaluate(with: strPANNumber)
-        }
     @IBAction func genderAction(_ sender: Any) {
         if btnGender.isSelected {
             btnGender.isSelected = true
@@ -291,14 +371,19 @@ class BasicDetailsVC: UIViewController {
                 }
     }
     @IBAction func jMonthAction(_ sender: Any) {
+        dobDatePicker.alpha = 1.0
+
         self.joingMonth = jMonthPicker.date.toString(dateFormat: "MMM-yyyy")
         print(self.dob)
     }
     @IBAction func dojAction(_ sender: Any) {
+        dobDatePicker.alpha = 1.0
+
         self.doj = dojDatePicker.date.toString(dateFormat: "dd-MMM-yyyy")
         print(self.dob)
     }
     @IBAction func datePicker(_ sender: Any) {
+        dobDatePicker.alpha = 1.0
         self.dob = dobDatePicker.date.toString(dateFormat: "dd-MMM-yyyy")
         print(self.dob)
     }
@@ -324,11 +409,6 @@ class BasicDetailsVC: UIViewController {
     }
     @IBAction func additionalAction(_ sender: Any) {
         if btnAdditional.isSelected {
-//            self.additionalHeight.constant = 674
-//            self.additionalView.isHidden = false
-//            btnAdditional.isSelected = false
-//            btnAdditional.setTitle("-", for: .normal)
-            
             btnAdditional.isSelected = false
             btnAdditional.setTitle("+", for: .normal)
             self.additionalView.isHidden = true
@@ -338,18 +418,20 @@ class BasicDetailsVC: UIViewController {
                    self.additionalView.isHidden = false
                    btnAdditional.isSelected = true
                    btnAdditional.setTitle("-", for: .normal)
-//                   btnAdditional.isSelected = true
-//                   btnAdditional.setTitle("+", for: .normal)
-//                   self.additionalView.isHidden = true
-//                   self.additionalHeight.constant = 0
                 }
     }
     
     @IBAction func save(_ sender: Any) {
         
+       
+
         
-        if txtEmail.text!.isValidEmail() {
-            
+        if  txtEmail.text!.isValidEmail() {
+            if  self.validatePANCardNumber(txtPan.text!) != true{
+                let alert = UIAlertController(title: "", message: " Please Enter valid PAN Number", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
             
             if Reachability.isConnectedToNetwork() {
                 print("Internet connection OK")
@@ -504,6 +586,7 @@ class BasicDetailsVC: UIViewController {
                     }
                 }
 }
+
     func joineedetailApi(){
         let loginUrl = AppConstants().baseUrl + "Newjoineelogin/joineedetail"
         let headers:HTTPHeaders = [
@@ -525,11 +608,65 @@ class BasicDetailsVC: UIViewController {
                         
                         let message = json["msg"].string
                         let status = json["status"].string
-                        let data = json["data"]
-                        let title = json["data"].arrayValue.map {$0["title"].stringValue}
-                            if status == "200"{
-
-                                self.languageList   = title
+                        //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
+                       // let title = json["data"].arrayValue.map {$0["title"].stringValue}
+            if status == "200"{
+                        let data = json["data"]["personal_detail"].dictionary
+                        let fname = data.map {$0["fname"]?.stringValue}
+                        let mName = data.map {$0["mname"]?.stringValue}
+                        let lName = data.map {$0["lname"]?.stringValue}
+                        let email = data.map {$0["email"]?.stringValue}
+                        let off_email = data.map {$0["off_email"]?.stringValue}
+                        let marital_status = data.map {$0["marital_status"]?.stringValue}
+                        
+                        let dob = data.map {$0["dob"]?.stringValue}
+                        let doj = data.map {$0["doj"]?.stringValue}
+                        let joinmonth = data.map {$0["joinmonth"]?.stringValue}
+                        let gender = data.map {$0["gender"]?.stringValue}
+                        let weight = data.map {$0["weight"]?.stringValue}
+                        let height = data.map {$0["height"]?.stringValue}
+                        
+                        let caste = data.map {$0["caste"]?.stringValue}
+                        let contact_no = data.map {$0["contact_no"]?.stringValue}
+                        let alt_phone = data.map {$0["alt_phone"]?.stringValue}
+                        let designation = data.map {$0["designation"]?.stringValue}
+                        let language = data.map {$0["language"]?.stringValue}
+                        let religion = data.map {$0["religion"]?.stringValue}
+                        let nationalty = data.map {$0["nationalty"]?.stringValue}
+                        let pannumber = data.map {$0["blood_group"]?.stringValue}
+                        let financial_year = data.map {$0["financial_year"]?.stringValue}
+                        let adhar_no = data.map {$0["adhar_no"]?.stringValue}
+                        let level = data.map {$0["level"]?.stringValue}
+                        let skill_set = data.map {$0["skill_set"]?.stringValue}
+                        let hobbies = data.map {$0["hobbies"]?.stringValue}
+                        
+                        let is_prefilled = data.map {$0["is_prefilled"]?.stringValue} ?? ""
+                        self.is_prefilled = is_prefilled!
+                        self.txtfName.text! = (fname ?? "") ?? ""
+                        self.txtmName.text! = (mName ?? "") ?? ""
+                        self.txtlName.text! = (lName ?? "") ?? ""
+                        
+                        self.txtEmail.text! = (email ?? "") ?? ""
+                        self.txtOfficialEmail.text! = (off_email ?? "") ?? ""
+                        self.txtMarritalStatus.text! = (marital_status ?? "") ?? ""
+                        
+                      //  self.txtDOB.text! = (dob ?? "") ?? ""
+                      //  self.txtDOJ.text! = (doj ?? "") ?? ""
+                      //  self.txtJoiningMonth.text! = (joinmonth ?? "") ?? ""
+                        
+                        self.txtCaste.text! = (caste ?? "") ?? ""
+                        self.txtMobile.text! = (contact_no ?? "") ?? ""
+                        self.txtAlternetMobile.text! = (alt_phone ?? "") ?? ""
+                        
+                       // self.txtLanguage.text! = (language ?? "") ?? ""
+                        self.txtReligion.text! = (religion ?? "") ?? ""
+                        self.txtPan.text! = (pannumber ?? "") ?? ""
+                        self.txtNationality.text! = (nationalty ?? "") ?? ""
+                        self.txtRemarks.text! = (religion ?? "") ?? ""
+                        self.txtSkillSet.text! = (skill_set ?? "") ?? ""
+                        self.txtHobbies.text! = (hobbies ?? "") ?? ""
+                        self.txtLevel.text! = (level ?? "") ?? ""
+     
                         
                             }
                         break
@@ -569,9 +706,5 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
-//    func iSvalidatePANCard() -> Bool{
-//           let regularExpression = "[A-Z]{5}[0-9]{4}[A-Z]{1}"
-//           let panCardValidation = NSPredicate(format : "SELF MATCHES %@", regularExpression)
-//           return panCardValidation.evaluate(with: strPANNumber)
-//       }
+
 }
