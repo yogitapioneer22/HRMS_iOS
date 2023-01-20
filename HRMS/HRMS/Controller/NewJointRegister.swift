@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class NewJointRegister: UIViewController {
+class NewJointRegister: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var imgPassword: UIImageView!
     
     @IBOutlet weak var btnSign: UIButton!
@@ -27,6 +27,8 @@ class NewJointRegister: UIViewController {
         btnSign.layer.cornerRadius = 10
         self.txtPassword.isSecureTextEntry = true
         passwordView.layer.borderColor = UIColor.black.cgColor
+        txtPassword.delegate = self
+
     }
     @IBAction func showPassword(_ sender: Any) {
         if btnShowPass.isSelected {
@@ -41,6 +43,13 @@ class NewJointRegister: UIViewController {
            // btnShowPass.setImage(#imageLiteral(resourceName: "ic_passwordShow_eye"), for: .normal)
             self.txtPassword.isSecureTextEntry = false
         }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 10
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+
+        return newString.count <= maxLength
     }
     @IBAction func loginAction(_ sender: Any) {
         
@@ -115,6 +124,9 @@ print(parameters)
                       print(status)
                             
                             if status == "200"{
+                                
+                                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                                UserDefaults.standard.synchronize()
                                 let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
                                 self.present(alert, animated: true) {
                                    sleep(2)

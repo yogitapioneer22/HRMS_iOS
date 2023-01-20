@@ -50,6 +50,10 @@ class PersonalDetailsVC: UIViewController {
     let fresherDrop = DropDown()
     var fromDate = ""
     var toDate = ""
+    let screenSize: CGRect = UIScreen.main.bounds
+    let customView = UIView()
+   var is_prefilled = "1"
+    var lagList = [""]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lastComView.isHidden = true
@@ -57,6 +61,12 @@ class PersonalDetailsVC: UIViewController {
         btnLastCom.isSelected = true
         updateUI()
         fresher()
+        //customView.frame = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width - 200, height: 200))
+        customView.frame = CGRect.init(x: 0, y: 0, width: 200, height: 200)
+      //  customView.frame = CGRect.init(x: 0, y: 0, width: 100, height: 200)
+          customView.backgroundColor = UIColor.gray     //give color to the view
+        //  customView.center = self.view.center
+         // self.view.addSubview(customView)
     }
     @IBAction func btnProfessionaAction(_ sender: Any) {
         if btnProfesional.isSelected {
@@ -128,7 +138,16 @@ class PersonalDetailsVC: UIViewController {
             self.txtIsFresher.text = item
         }
         fresherDrop.width = 200
+       // fresherDrop.direction = .bottom
+        fresherDrop.frame = customView.frame
+       // fresherDrop.leftAnchor.constraint(equalTo: txtIsFresher.leftAnchor, constant: 20).isActive = true
+//        fresherDrop.rightAnchor.constraint(equalTo: txtIsFresher.rightAnchor, constant: -20).isActive = true
+//
+//        fresherDrop.centerYAnchor.constraint(equalTo: txtIsFresher.centerYAnchor).isActive = true
+//        fresherDrop.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
     }
+    
     func updateUI(){
         btnSave.layer.cornerRadius = 5.0
         btnSave.layer.masksToBounds = true
@@ -489,7 +508,7 @@ print(parameters)
                     }
                 }
 }
-    
+ 
     func joineedetailApi(){
         let loginUrl = AppConstants().baseUrl + "Newjoineelogin/joineedetail"
         let headers:HTTPHeaders = [
@@ -514,61 +533,46 @@ print(parameters)
                         //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
                        // let title = json["data"].arrayValue.map {$0["title"].stringValue}
             if status == "200"{
-                        let data = json["data"]["personal_detail"].dictionary
-                        let fname = data.map {$0["fname"]?.stringValue}
-                        let mName = data.map {$0["mname"]?.stringValue}
-                        let lName = data.map {$0["lname"]?.stringValue}
-                        let email = data.map {$0["email"]?.stringValue}
-                        let off_email = data.map {$0["off_email"]?.stringValue}
-                        let marital_status = data.map {$0["marital_status"]?.stringValue}
-                        
-                        let dob = data.map {$0["dob"]?.stringValue}
-                        let doj = data.map {$0["doj"]?.stringValue}
-                        let joinmonth = data.map {$0["joinmonth"]?.stringValue}
-                        let gender = data.map {$0["gender"]?.stringValue}
-                        let weight = data.map {$0["weight"]?.stringValue}
-                        let height = data.map {$0["height"]?.stringValue}
-                        
-                        let caste = data.map {$0["caste"]?.stringValue}
-                        let contact_no = data.map {$0["contact_no"]?.stringValue}
-                        let alt_phone = data.map {$0["alt_phone"]?.stringValue}
-                        let designation = data.map {$0["designation"]?.stringValue}
-                        let language = data.map {$0["language"]?.stringValue}
-                        let religion = data.map {$0["religion"]?.stringValue}
-                        let nationalty = data.map {$0["nationalty"]?.stringValue}
-                        let pannumber = data.map {$0["blood_group"]?.stringValue}
-                        let financial_year = data.map {$0["financial_year"]?.stringValue}
-                        let adhar_no = data.map {$0["adhar_no"]?.stringValue}
-                        let level = data.map {$0["level"]?.stringValue}
-                        let skill_set = data.map {$0["skill_set"]?.stringValue}
-                        let hobbies = data.map {$0["hobbies"]?.stringValue}
+                        let data = json["data"]["professional_detail"].dictionary
+                        let is_fresher = data.map {$0["is_fresher"]?.stringValue}
+                        let last_company_name = data.map {$0["last_company_name"]?.stringValue}
+                        let lastcomp_firstdesignation = data.map {$0["lastcomp_firstdesignation"]?.stringValue}
+                        let emprexp1 = data.map {$0["emprexp1"]?.stringValue}
+                        let emprname1 = data.map {$0["emprname1"]?.stringValue}
+                        let emprto1 = data.map {$0["emprto1"]?.stringValue}
+                        let emprexp2 = data.map {$0["emprexp2"]?.stringValue}
+                        let totalexp = data.map {$0["totalexp"]?.stringValue}
+                        let emprname2 = data.map {$0["emprname2"]?.stringValue}
+                        let emprfrom1 = data.map {$0["emprfrom1"]?.stringValue}
+                        let empradd1 = data.map {$0["empradd1"]?.stringValue}
+                        let emprdesg1 = data.map {$0["emprdesg1"]?.stringValue}
+                        let emprrole1 = data.map {$0["emprrole1"]?.stringValue}
+                        let emprdesg2 = data.map {$0["emprdesg2"]?.stringValue}
+                        let empreason3 = data.map {$0["empreason3"]?.stringValue}
+                        let emprrole3 = data.map {$0["emprrole3"]?.stringValue}
+                        let empreason2 = data.map {$0["empreason2"]?.stringValue}
+                        let emprto2 = data.map {$0["emprto2"]?.stringValue}
+                        let last_ctc = data.map {$0["last_ctc"]?.stringValue}
+                    
                         
                         let is_prefilled = data.map {$0["is_prefilled"]?.stringValue} ?? ""
-                      //  self.is_prefilled = is_prefilled!
-                       // self.txtfName.text! = (fname ?? "") ?? ""
-//                        self.txtmName.text! = (mName ?? "") ?? ""
-//                        self.txtlName.text! = (lName ?? "") ?? ""
+                        self.is_prefilled = is_prefilled!
+                        self.txtLEm.text! = (emprname1 ?? "") ?? ""
+                        self.txtTo.text! = (emprto1 ?? "") ?? ""
+                        self.txtDesig.text! = (emprdesg1 ?? "") ?? ""
                         
-//                        self.txtEmail.text! = (email ?? "") ?? ""
-//                        self.txtOfficialEmail.text! = (off_email ?? "") ?? ""
-//                        self.txtMarritalStatus.text! = (marital_status ?? "") ?? ""
+                        self.txtReason.text! = (empreason2 ?? "") ?? ""
+                        self.txtLReason.text! = (empreason2 ?? "") ?? ""
+                        self.txtExperience.text! = (emprexp1 ?? "") ?? ""
                         
-                      //  self.txtDOB.text! = (dob ?? "") ?? ""
-                      //  self.txtDOJ.text! = (doj ?? "") ?? ""
-                      //  self.txtJoiningMonth.text! = (joinmonth ?? "") ?? ""
+                        self.txtExp.text! = (totalexp ?? "") ?? ""
+                        self.txtName.text! = (last_company_name ?? "") ?? ""
+                        self.txtLastCTC.text! = (last_ctc ?? "") ?? ""
                         
-//                        self.txtCaste.text! = (caste ?? "") ?? ""
-//                        self.txtMobile.text! = (contact_no ?? "") ?? ""
-//                        self.txtAlternetMobile.text! = (alt_phone ?? "") ?? ""
-//
-                       // self.txtLanguage.text! = (language ?? "") ?? ""
-//                        self.txtReligion.text! = (religion ?? "") ?? ""
-//                        self.txtPan.text! = (pannumber ?? "") ?? ""
-//                        self.txtNationality.text! = (nationalty ?? "") ?? ""
-//                        self.txtRemarks.text! = (religion ?? "") ?? ""
-//                        self.txtSkillSet.text! = (skill_set ?? "") ?? ""
-//                        self.txtHobbies.text! = (hobbies ?? "") ?? ""
-//                        self.txtLevel.text! = (level ?? "") ?? ""
+                        self.txtLRole.text! = (emprrole1 ?? "") ?? ""
+                        self.txtOtherCDetails.text! = (emprrole3 ?? "") ?? ""
+
+                       
      
                         
                             }

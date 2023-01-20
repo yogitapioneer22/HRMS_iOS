@@ -145,6 +145,8 @@ class OnboardingDetailsVC: UIViewController,UITableViewDelegate ,UITableViewData
 
                             refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                                 //refreshAlert .dismiss(animated: true, completion: nil)
+                                UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+                                 UserDefaults.standard.synchronize()
                                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "NewJointRegister") as! NewJointRegister
                                 self.present(nextViewController, animated:true, completion:nil)

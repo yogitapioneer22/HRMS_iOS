@@ -55,7 +55,7 @@ class EducationDetailsVC: UIViewController {
     @IBOutlet weak var graduationView: UIView!
     @IBOutlet weak var XiiView: UIView!
     @IBOutlet weak var XView: UIView!
-    
+    var is_prefilled = "1"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.XiiView.isHidden = true
@@ -420,51 +420,57 @@ class EducationDetailsVC: UIViewController {
                         //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
                        // let title = json["data"].arrayValue.map {$0["title"].stringValue}
             if status == "200"{
-                        let data = json["data"]["family_detail"].dictionary
-                        let mothername = data.map {$0["mothername"]?.stringValue}
-                        let motheroccupation = data.map {$0["motheroccupation"]?.stringValue}
-                        let other_relation = data.map {$0["other_relation"]?.stringValue}
-                        let spouse_dob = data.map {$0["spouse_dob"]?.stringValue}
-                        let fathercnt = data.map {$0["fathercnt"]?.stringValue}
-                        let fatheroccupation = data.map {$0["fatheroccupation"]?.stringValue}
+                        let data = json["data"]["education_detail"].dictionary
+                        let passing_yr_3 = data.map {$0["passing_yr_3"]?.stringValue}
+                        let specialization_1 = data.map {$0["specialization_1"]?.stringValue}
+                        let specialization_2 = data.map {$0["specialization_2"]?.stringValue}
+                        let specialization_4 = data.map {$0["specialization_4"]?.stringValue}
+                        let percentage_4 = data.map {$0["percentage_4"]?.stringValue}
+                        let university_1 = data.map {$0["university_1"]?.stringValue}
+                        let passing_yr_2 = data.map {$0["passing_yr_2"]?.stringValue}
                         
-                        let other_dob = data.map {$0["other_dob"]?.stringValue}
-                        let mothercnt = data.map {$0["mothercnt"]?.stringValue}
-                        let father_dob = data.map {$0["father_dob"]?.stringValue}
-                        let wifename = data.map {$0["wifename"]?.stringValue}
-                        let other_occupation = data.map {$0["other_occupation"]?.stringValue}
-                        let other_contact = data.map {$0["other_contact"]?.stringValue}
-                        
-                        let fathername = data.map {$0["fathername"]?.stringValue}
-                        let wifecnt = data.map {$0["wifecnt"]?.stringValue}
-                        let mother_dob = data.map {$0["mother_dob"]?.stringValue}
                         let is_prefilled = data.map {$0["is_prefilled"]?.stringValue}
-                        let kids = data.map {$0["kids"]?.stringValue}
-                        let other_name = data.map {$0["other_name"]?.stringValue}
-                        let spouse_occupation = data.map {$0["spouse_occupation"]?.stringValue}
+                        let percentage_1 = data.map {$0["percentage_1"]?.stringValue}
+                        let university_4 = data.map {$0["university_4"]?.stringValue}
+                        let specialization_3 = data.map {$0["specialization_3"]?.stringValue}
+                        let percentage_3 = data.map {$0["percentage_3"]?.stringValue}
+                        let passing_yr_1 = data.map {$0["passing_yr_1"]?.stringValue}
+                        
+                        let passing_yr_4 = data.map {$0["passing_yr_4"]?.stringValue}
+                        let specialization_5 = data.map {$0["specialization_5"]?.stringValue}
+                        let percentage_5 = data.map {$0["percentage_5"]?.stringValue}
+                        let university_5 = data.map {$0["university_5"]?.stringValue}
+                        let passing_yr_5 = data.map {$0["passing_yr_5"]?.stringValue}
+                        let university_2 = data.map {$0["university_2"]?.stringValue}
+                        let university_3 = data.map {$0["university_3"]?.stringValue}
+                        let percentage_2 = data.map {$0["percentage_2"]?.stringValue}
+              
           
-                  // self.is_prefilled = is_prefilled! ?? ""
-//                        self.txtFatherName.text! = (fathername ?? "") ?? ""
-//                        self.txtFatherOccupation.text! = (fatheroccupation ?? "") ?? ""
-//                        self.txtFatherContact.text! = (fathercnt ?? "") ?? ""
-//
-//                        self.txtFatherDOB.text! = (father_dob ?? "") ?? ""
-//                        self.txtMotherName.text! = (mothername ?? "") ?? ""
-//                        self.txtMotherOccupation.text! = (motheroccupation ?? "") ?? ""
-//
-//                        self.txtMotherDOB.text! = (mother_dob ?? "") ?? ""
-//                        self.txtMotherContact.text! = (mothercnt ?? "") ?? ""
-//                        self.txtSpouse.text! = (wifename ?? "") ?? ""
-//
-//                        self.txtSpouseDOB.text! = (spouse_dob ?? "") ?? ""
-//                        self.txtSpouseOccupation.text! = (spouse_occupation ?? "") ?? ""
-//                        self.txtOtherRelation.text! = (other_relation ?? "") ?? ""
-//
-//                       // self.txtLanguage.text! = (language ?? "") ?? ""
-//                        self.txtRelation.text! = (other_relation ?? "") ?? ""
-//                        self.txtOccupation.text! = (other_occupation ?? "") ?? ""
-//                        self.txtContact.text! = (other_contact ?? "") ?? ""
-                       // self.txtDOB.text! = (DOB ?? "") ?? ""
+                      self.is_prefilled = is_prefilled! ?? ""
+                        self.txtBoard.text! = (university_1 ?? "") ?? ""
+                        self.txtBoard1.text! = (university_2 ?? "") ?? ""
+                        self.txtBoard2.text! = (university_3 ?? "") ?? ""
+                        self.txtUnivesity.text! = (university_4 ?? "") ?? ""
+                        self.txtUnivesity2.text! = (university_5 ?? "") ?? ""
+
+                        self.txtSpz.text! = (specialization_1 ?? "") ?? ""
+                        self.txtSpez1.text! = (specialization_2 ?? "") ?? ""
+                        self.txtSpz2.text! = (specialization_3 ?? "") ?? ""
+
+                        self.txtSpz3.text! = (specialization_4 ?? "") ?? ""
+                        self.txtSpz4.text! = (specialization_5 ?? "") ?? ""
+                        self.txtPercent.text! = (percentage_1 ?? "") ?? ""
+
+                        self.txtPerc1.text! = (percentage_2 ?? "") ?? ""
+                        self.txtPec2.text! = (percentage_3 ?? "") ?? ""
+                        self.txtPerc3.text! = (percentage_4 ?? "") ?? ""
+
+                        self.txtPerc4.text! = (percentage_5 ?? "") ?? ""
+//                        self.txtPassYear.text! = (passing_yr_1 ?? "") ?? ""
+//                        self.txtPassYear1.text! = (passing_yr_2 ?? "") ?? ""
+//                        self.txtPassYear2.text! = (passing_yr_3 ?? "") ?? ""
+//                        self.txtPassYear3.text! = (passing_yr_4 ?? "") ?? ""
+//                        self.txtPassYear4.text! = (passing_yr_5 ?? "") ?? ""
                        
      
                         

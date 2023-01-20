@@ -191,18 +191,41 @@ class FamilyDetailsVC: UIViewController {
         self.present(nextViewController, animated:true, completion:nil)
     }
     @IBAction func saveAction(_ sender: Any) {
-        if Reachability.isConnectedToNetwork() {
-            print("Internet connection OK")
-            DispatchQueue.main.async {
-                self.callFamilyDetailsApi()
-
+        
+        let FContact = txtFatherContact.text!
+        let MContact = txtMotherContact.text!
+        let SContact = txtSpouseContact.text!
+        let contact = txtContact.text!
+        let fphoneNumberVal = FContact.isPhoneNumber
+        let mphoneNumberVal = MContact.isPhoneNumber
+        let sphoneNumberVal = SContact.isPhoneNumber
+        let contactNumberVal = contact.isPhoneNumber
+        if fphoneNumberVal == false ||  mphoneNumberVal == false ||  sphoneNumberVal == false || contactNumberVal == false{
+            let alert = UIAlertController(title: "", message: "Enter Valid Contact Number!", preferredStyle: .alert)
+            self.present(alert, animated: true) {
+               sleep(1)
+               alert.dismiss(animated: true)
             }
-        } else {
-            print("Internet connection FAILED")
-            let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        }else{
+            
+            if Reachability.isConnectedToNetwork() {
+                print("Internet connection OK")
+                DispatchQueue.main.async {
+                    self.callFamilyDetailsApi()
+
+                }
+            } else {
+                print("Internet connection FAILED")
+                let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
+        
+        
+        
+        
+       
     }
     
     func callFamilyDetailsApi(){
@@ -320,7 +343,6 @@ print(parameters)
                     case .success(let value):
                    let json = JSON(value)
                         print(json)
-                        
                         let message = json["msg"].string
                         let status = json["status"].string
                         //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
@@ -371,9 +393,6 @@ print(parameters)
                         self.txtOccupation.text! = (other_occupation ?? "") ?? ""
                         self.txtContact.text! = (other_contact ?? "") ?? ""
                        // self.txtDOB.text! = (DOB ?? "") ?? ""
-                       
-     
-                        
                             }
                         break
                     case .failure:

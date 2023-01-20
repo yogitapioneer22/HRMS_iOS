@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import DropDown
-class BasicDetailsVC: UIViewController {
+class BasicDetailsVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var btnGender: UIButton!
     @IBOutlet weak var btnMaritalStatus: UIButton!
     @IBOutlet weak var btnSave: UIButton!
@@ -52,6 +52,7 @@ class BasicDetailsVC: UIViewController {
     @IBOutlet weak var txtDesignation: UITextField!
     @IBOutlet weak var txtFinancYear: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnBloodGroup: UIButton!
     @IBOutlet weak var btnReligion: UIButton!
     
@@ -66,34 +67,57 @@ class BasicDetailsVC: UIViewController {
     var languageList = [""]
     var is_prefilled = ""
     var lagua = ""
-    
+    var lagList = [""]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        callLanguageListApi()
         updateUI()
         self.additionalView.isHidden = true
         self.additionalHeight.constant = 0
-        callLanguageListApi()
         joineedetailApi()
          gender()
         merital()
         bgroup()
         relision()
+       // language()
         if is_prefilled == "1"{
             dojDatePicker.isHidden = true
             dobDatePicker.isHidden = true
             
         }
-        
-     //   dobDatePicker.alpha = 0.0
+       // txtfName.delegate = self
+        txtMobile.delegate = self
+        txtAlternetMobile.delegate = self
+        DropDown.appearance().textColor = UIColor.darkGray
+      //  DropDown.appearance().selectedTextColor = UIColor.red
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 13)
+        DropDown.appearance().cornerRadius = 10
+        DropDown.appearance().separatorColor = UIColor.darkGray
+
+     // dobDatePicker.alpha = 0.0
         txtDOB.addTarget(self, action: #selector(dobTextField(_:)), for: .allEditingEvents)
 
-
-    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        dobDatePicker.isHidden = false
     }
 
-    @IBAction func bGAction(_ sender: Any) {
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    view.endEditing(true)
+
+    }
+    @IBAction func txtDOBAc(_ sender: Any) {
+        dobDatePicker.isHidden = false
+        //dobDatePicker.isSelected = true
+    }
+    @IBAction func bGAction(_ sender: UIButton) {
+        bGDrop.anchorView = sender
+        bGDrop.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
         if txtBloodGroup.isSelected {
             txtBloodGroup.isSelected = true
             bGDrop.hide()
@@ -103,7 +127,10 @@ class BasicDetailsVC: UIViewController {
                 }
     }
     
-    @IBAction func txtRelisionAction(_ sender: Any) {
+    @IBAction func txtRelisionAction(_ sender: UITextField) {
+        relisionDrop.anchorView = sender
+        relisionDrop.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
+        
         if txtReligion.isSelected {
             txtReligion.isSelected = true
             relisionDrop.hide()
@@ -143,13 +170,13 @@ class BasicDetailsVC: UIViewController {
         txtEmail.setLeftPaddingPoints(10)
         txtEmail.layer.cornerRadius = 5.0
         txtEmail.layer.masksToBounds = true
-        txtEmail.layer.borderWidth = 1.0
+        //txtEmail.layer.borderWidth = 1.0
         txtEmail.layer.borderColor = UIColor.lightGray.cgColor
         
         txtOfficialEmail.setLeftPaddingPoints(10)
         txtOfficialEmail.layer.cornerRadius = 5.0
         txtOfficialEmail.layer.masksToBounds = true
-        txtOfficialEmail.layer.borderWidth = 1.0
+       // txtOfficialEmail.layer.borderWidth = 1.0
         txtOfficialEmail.layer.borderColor = UIColor.lightGray.cgColor
         
         txtMarritalStatus.setLeftPaddingPoints(10)
@@ -158,22 +185,22 @@ class BasicDetailsVC: UIViewController {
         txtMarritalStatus.layer.borderWidth = 1.0
         txtMarritalStatus.layer.borderColor = UIColor.lightGray.cgColor
         
-        txtDOB.setLeftPaddingPoints(10)
+        txtDOB.setLeftPaddingPoints(35)
         txtDOB.layer.cornerRadius = 5.0
         txtDOB.layer.masksToBounds = true
         txtDOB.layer.borderWidth = 1.0
         txtDOB.layer.borderColor = UIColor.lightGray.cgColor
         
-        txtDOJ.setLeftPaddingPoints(10)
+        txtDOJ.setLeftPaddingPoints(35)
         txtDOJ.layer.cornerRadius = 5.0
         txtDOJ.layer.masksToBounds = true
-        txtDOJ.layer.borderWidth = 1.0
+       // txtDOJ.layer.borderWidth = 1.0
         txtDOJ.layer.borderColor = UIColor.lightGray.cgColor
         
-        txtJoiningMonth.setLeftPaddingPoints(10)
+        txtJoiningMonth.setLeftPaddingPoints(35)
         txtJoiningMonth.layer.cornerRadius = 5.0
         txtJoiningMonth.layer.masksToBounds = true
-        txtJoiningMonth.layer.borderWidth = 1.0
+      //  txtJoiningMonth.layer.borderWidth = 1.0
         txtJoiningMonth.layer.borderColor = UIColor.lightGray.cgColor
         
         txtGender.setLeftPaddingPoints(10)
@@ -203,7 +230,7 @@ class BasicDetailsVC: UIViewController {
         txtMobile.setLeftPaddingPoints(10)
         txtMobile.layer.cornerRadius = 5.0
         txtMobile.layer.masksToBounds = true
-        txtMobile.layer.borderWidth = 1.0
+       // txtMobile.layer.borderWidth = 1.0
         txtMobile.layer.borderColor = UIColor.lightGray.cgColor
         
         txtAlternetMobile.setLeftPaddingPoints(10)
@@ -248,23 +275,23 @@ class BasicDetailsVC: UIViewController {
         txtBloodGroup.layer.borderWidth = 1.0
         txtBloodGroup.layer.borderColor = UIColor.lightGray.cgColor
         
-        txtFinancYear.setLeftPaddingPoints(10)
+        txtFinancYear.setLeftPaddingPoints(35)
         txtFinancYear.layer.cornerRadius = 5.0
         txtFinancYear.layer.masksToBounds = true
-        txtFinancYear.layer.borderWidth = 1.0
+       // txtFinancYear.layer.borderWidth = 1.0
         txtFinancYear.layer.borderColor = UIColor.lightGray.cgColor
         
         txtDesignation.setLeftPaddingPoints(10)
         txtDesignation.layer.cornerRadius = 5.0
         txtDesignation.layer.masksToBounds = true
-        txtDesignation.layer.borderWidth = 1.0
+       // txtDesignation.layer.borderWidth = 1.0
         txtDesignation.layer.borderColor = UIColor.lightGray.cgColor
         
         txtLevel.setLeftPaddingPoints(10)
         txtLevel.layer.cornerRadius = 5.0
         txtLevel.layer.masksToBounds = true
-        txtLevel.layer.borderWidth = 1.0
-        txtLevel.layer.borderColor = UIColor.lightGray.cgColor
+       // txtLevel.layer.borderWidth = 1.0
+       // txtLevel.layer.borderColor = UIColor.lightGray.cgColor
         
         txtSkillSet.setLeftPaddingPoints(10)
         txtSkillSet.layer.cornerRadius = 5.0
@@ -291,11 +318,10 @@ class BasicDetailsVC: UIViewController {
         txtAlergicTo.layer.borderColor = UIColor.lightGray.cgColor
         
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.txtLanguage.text = lagua
+        //self.txtLanguage.text = lagua
     }
     
     func validatePANCardNumber(_ strPANNumber : String) -> Bool{
@@ -304,12 +330,15 @@ class BasicDetailsVC: UIViewController {
                 return panCardValidation.evaluate(with: strPANNumber)
             }
     func gender(){
+       // DropDown.appearance().textColor = UIColor.black
+      //  DropDown.appearance().selectedTextColor = UIColor.red
+       // DropDown.appearance().textFont = UIFont.systemFont(ofSize: 13)
         genderDropDown.dataSource = ["Male", "Female"]
         genderDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
           print("Selected item: \(item) at index: \(index)")
             self.txtGender.text = item
         }
-        genderDropDown.width = 200
+       // genderDropDown.width = 200
     }
     func merital(){
         marrital.dataSource = ["UnMarried", "Married", "Widow","Widower","Divorced"]
@@ -317,7 +346,7 @@ class BasicDetailsVC: UIViewController {
           print("Selected item: \(item) at index: \(index)")
             self.txtMarritalStatus.text = item
         }
-        marrital.width = 200
+       // marrital.width = 200
     }
     func relision(){
         relisionDrop.dataSource = ["Hiduism", "Islam", "Christianity","Sikhism","Buddhism","Jainism","Zorostrianism","Judaism"]
@@ -325,7 +354,7 @@ class BasicDetailsVC: UIViewController {
           print("Selected item: \(item) at index: \(index)")
             self.txtReligion.text = item
         }
-        relisionDrop.width = 200
+       // relisionDrop.width = 200
     }
     func bgroup(){
         bGDrop.dataSource = ["A-", "A+", "B-","B+","O+", "O-","AB+","AB-"]
@@ -333,10 +362,12 @@ class BasicDetailsVC: UIViewController {
           print("Selected item: \(item) at index: \(index)")
             self.txtBloodGroup.text = item
         }
-        bGDrop.width = 200
+       // bGDrop.width = 200
     }
     
-    @IBAction func maritalStatusAction(_ sender: Any) {
+    @IBAction func maritalStatusAction(_ sender: UIButton) {
+        marrital.anchorView = sender
+        marrital.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
         if btnMaritalStatus.isSelected {
             btnMaritalStatus.isSelected = true
             marrital.hide()
@@ -345,23 +376,42 @@ class BasicDetailsVC: UIViewController {
                    marrital.show()
                 }
     }
-    @IBAction func languageAction(_ sender: Any) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LanguageListVC") as! LanguageListVC
-        self.present(nextViewController, animated:true, completion:nil)
-    }
-    
-    func language(){
-      //  lamguageDropDown.dataSource = ["Hindi", "English", "Other"]
+    @IBAction func languageAction(_ sender: UIButton) {
+        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LanguageListVC") as! LanguageListVC
+//        self.present(nextViewController, animated:true, completion:nil)
         lamguageDropDown.dataSource = self.languageList
         lamguageDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
           print("Selected item: \(item) at index: \(index)")
             self.txtLanguage.text = item
         }
-        lamguageDropDown.width = 200
+        lamguageDropDown.anchorView = sender //5
+        lamguageDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height) //6
+        lamguageDropDown.show() //7
+
     }
     
-    @IBAction func genderAction(_ sender: Any) {
+    func language(){
+        //lamguageDropDown.dataSource = ["Hindi", "English", "Other"]
+        lamguageDropDown.dataSource = self.languageList
+        lamguageDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.txtLanguage.text = item
+        }
+       // lamguageDropDown.width = 200
+    }
+    
+    @IBAction func genderAction(_ sender: UIButton) {
+        
+       // genderDropDown.dataSource = ["Tomato soup", "Mini burgers", "Onion rings", "Baked potato", "Salad"]//4
+        genderDropDown.anchorView = sender
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: sender.frame.size.height)
+        //genderDropDown.show() //7
+     //   genderDropDown.selectionAction = { [weak self] (index: Int, item: String) in //8
+        //  guard let _ = self else { return }
+         // sender.setTitle(item, for: .normal) //9
+       // }
         if btnGender.isSelected {
             btnGender.isSelected = true
             genderDropDown.hide()
@@ -420,17 +470,41 @@ class BasicDetailsVC: UIViewController {
                    btnAdditional.setTitle("-", for: .normal)
                 }
     }
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 10
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+
+        return newString.count <= maxLength
+    }
     @IBAction func save(_ sender: Any) {
         
-       
-
-        
-        if  txtEmail.text!.isValidEmail() {
+        if  txtEmail.text!.isValidEmail() || txtOfficialEmail.text!.isValidEmail() {
             if  self.validatePANCardNumber(txtPan.text!) != true{
                 let alert = UIAlertController(title: "", message: " Please Enter valid PAN Number", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+            }
+            
+            let phoneNumberString = txtMobile.text!
+              let phoneNumberValidation = phoneNumberString.isPhoneNumber
+              print(phoneNumberValidation)
+            if phoneNumberValidation == false{
+                let alert = UIAlertController(title: "", message: "Enter Valid Mobile Number!", preferredStyle: .alert)
+                self.present(alert, animated: true) {
+                   sleep(1)
+                   alert.dismiss(animated: true)
+                }
+            }
+            let adharString = txtAadhar.text!
+              let adharNumberValidation = adharString.isAdharNumber
+              print(adharNumberValidation)
+            if adharNumberValidation == false{
+                let alert = UIAlertController(title: "", message: "Enter Valid Adhar Number!", preferredStyle: .alert)
+                self.present(alert, animated: true) {
+                   sleep(1)
+                   alert.dismiss(animated: true)
+                }
             }
             
             if Reachability.isConnectedToNetwork() {
@@ -467,14 +541,23 @@ class BasicDetailsVC: UIViewController {
             "official_email": txtEmail.text!,
             "marital_status": txtMarritalStatus.text!,
             "dob": self.dob,
-            "joinmonth": self.doj,
+            "joinmonth": self.joingMonth,
             "gender": txtGender.text!,
             "alt_phone": txtAlternetMobile.text!,
             "pannumber": txtPan.text!,
             "blood_group": txtBloodGroup.text!,
             "adhar_no": txtAadhar.text!,
             "skill_set": txtSkillSet.text!,
-            "remarks": txtRemarks.text!
+            "hobbies": txtHobbies.text!,
+            "remarks": txtRemarks.text!,
+            "height": txtHeight.text!,
+            "weight": txtWeight.text!,
+            "allergicto": txtAlergicTo.text!,
+            "religion": txtReligion.text!,
+            "language": txtLanguage.text!,
+            "caste": txtCaste.text!,
+            "financial_year": txtFinancYear.text!,
+            "nationalty": txtNationality.text!,
                 ] as? [String:AnyObject]
          print(parameters)
         AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {
@@ -507,18 +590,24 @@ class BasicDetailsVC: UIViewController {
                             
                             if status == "200"{
                                 
-                        let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
-                                
-                        refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                         //   refreshAlert .dismiss(animated: true, completion: nil)
-
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "FamilyDetailsVC") as! FamilyDetailsVC
-                self.present(nextViewController, animated:true, completion:nil)
-                                    
-                                }))
-                        
-                                self.present(refreshAlert, animated: true, completion: nil)
+                                let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+                                self.present(alert, animated: true) {
+                                   sleep(1)
+                                   alert.dismiss(animated: true)
+                                }
+//
+//                        let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+//
+//                        refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//                         //   refreshAlert .dismiss(animated: true, completion: nil)
+//
+//                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "FamilyDetailsVC") as! FamilyDetailsVC
+//                self.present(nextViewController, animated:true, completion:nil)
+//
+//                                }))
+//
+//                                self.present(refreshAlert, animated: true, completion: nil)
                             }else{
                                 
                                 let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
@@ -553,40 +642,37 @@ class BasicDetailsVC: UIViewController {
     func callLanguageListApi(){
         let loginUrl = AppConstants().baseUrl + "Newjoineelogin/getlanguagelist"
         let headers:HTTPHeaders = [
-          
+            
         ]
         LoadingOverlay.shared.showOverlay(view: view)
         let appToken =  UserDefaults.standard.string(forKey: "token") ?? "NA"
         let parameters = [
             "token": appToken
-                ] as? [String:AnyObject]
-         print(parameters)
+        ] as? [String:AnyObject]
+        print(parameters)
         AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {
-                    response in
+            response in
             LoadingOverlay.shared.hideOverlayView()
-                    switch (response.result) {
-                    case .success(let value):
-                   let json = JSON(value)
-                        print(json)
-                        
-                        let message = json["msg"].string
-                        let status = json["status"].string
-                        let data = json["data"]
-                        let title = json["data"].arrayValue.map {$0["title"].stringValue}
-                            if status == "200"{
-
-                                self.languageList   = title
-                        
-                            }
-                        break
-                    case .failure:
-                        print(Error.self)
-                        
-                       
-                    }
-                }
-}
-
+            switch (response.result) {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+                let message = json["msg"].string
+                let status = json["status"].string
+                let data = json["data"]
+                let title = json["data"].arrayValue.map {$0["title"].stringValue}
+                self.languageList   = title
+               // self.tableView.reloadData()
+                break
+            case .failure:
+                print(Error.self)
+                
+                
+            }
+        }
+        
+    }
     func joineedetailApi(){
         let loginUrl = AppConstants().baseUrl + "Newjoineelogin/joineedetail"
         let headers:HTTPHeaders = [
@@ -625,6 +711,7 @@ class BasicDetailsVC: UIViewController {
                         let gender = data.map {$0["gender"]?.stringValue}
                         let weight = data.map {$0["weight"]?.stringValue}
                         let height = data.map {$0["height"]?.stringValue}
+                let remarks = data.map {$0["remarks"]?.stringValue}
                         
                         let caste = data.map {$0["caste"]?.stringValue}
                         let contact_no = data.map {$0["contact_no"]?.stringValue}
@@ -633,36 +720,59 @@ class BasicDetailsVC: UIViewController {
                         let language = data.map {$0["language"]?.stringValue}
                         let religion = data.map {$0["religion"]?.stringValue}
                         let nationalty = data.map {$0["nationalty"]?.stringValue}
-                        let pannumber = data.map {$0["blood_group"]?.stringValue}
+                        let pannumber = data.map {$0["pannumber"]?.stringValue}
                         let financial_year = data.map {$0["financial_year"]?.stringValue}
                         let adhar_no = data.map {$0["adhar_no"]?.stringValue}
                         let level = data.map {$0["level"]?.stringValue}
                         let skill_set = data.map {$0["skill_set"]?.stringValue}
                         let hobbies = data.map {$0["hobbies"]?.stringValue}
-                        
+                        let allergicto = data.map {$0["allergicto"]?.stringValue}
                         let is_prefilled = data.map {$0["is_prefilled"]?.stringValue} ?? ""
+                let blood_group = data.map {$0["blood_group"]?.stringValue} ?? ""
                         self.is_prefilled = is_prefilled!
                         self.txtfName.text! = (fname ?? "") ?? ""
                         self.txtmName.text! = (mName ?? "") ?? ""
                         self.txtlName.text! = (lName ?? "") ?? ""
+                self.txtGender.text! = (gender ?? "") ?? ""
+                self.txtAadhar.text! = (adhar_no ?? "") ?? ""
+                self.txtLanguage.text! = (language ?? "") ?? ""
+                self.txtBloodGroup.text! = (blood_group ?? "") ?? ""
+                self.txtFinancYear.text! = (financial_year ?? "") ?? ""
                         
                         self.txtEmail.text! = (email ?? "") ?? ""
                         self.txtOfficialEmail.text! = (off_email ?? "") ?? ""
                         self.txtMarritalStatus.text! = (marital_status ?? "") ?? ""
+                        self.txtWeight.text! = (weight ?? "") ?? ""
+                self.txtHeight.text! = (height ?? "") ?? ""
+                self.txtAlergicTo.text! = (allergicto ?? "") ?? ""
+                if dob == ""{
+                    self.txtDOB.isUserInteractionEnabled = true
+                   
+                }else{
+                    self.dobDatePicker.isHidden = true
+                    self.txtDOB.text! = (dob ?? "") ?? ""
+                }
+//                if doj == ""{
+//                    self.txtDOJ.isUserInteractionEnabled = true
+//                }
+                if joinmonth == ""{
+                    //self.txtJoiningMonth.isUserInteractionEnabled = true
+                    self.jMonthPicker.isHidden = false
+                }
                         
-                      //  self.txtDOB.text! = (dob ?? "") ?? ""
-                      //  self.txtDOJ.text! = (doj ?? "") ?? ""
-                      //  self.txtJoiningMonth.text! = (joinmonth ?? "") ?? ""
+                        self.txtDOB.text! = (dob ?? "") ?? ""
+                        self.txtDOJ.text! = (doj ?? "") ?? ""
+                       self.txtJoiningMonth.text! = (joinmonth ?? "") ?? ""
                         
                         self.txtCaste.text! = (caste ?? "") ?? ""
                         self.txtMobile.text! = (contact_no ?? "") ?? ""
                         self.txtAlternetMobile.text! = (alt_phone ?? "") ?? ""
                         
-                       // self.txtLanguage.text! = (language ?? "") ?? ""
+                        self.txtDesignation.text! = (designation ?? "") ?? ""
                         self.txtReligion.text! = (religion ?? "") ?? ""
                         self.txtPan.text! = (pannumber ?? "") ?? ""
                         self.txtNationality.text! = (nationalty ?? "") ?? ""
-                        self.txtRemarks.text! = (religion ?? "") ?? ""
+                        self.txtRemarks.text! = (remarks ?? "") ?? ""
                         self.txtSkillSet.text! = (skill_set ?? "") ?? ""
                         self.txtHobbies.text! = (hobbies ?? "") ?? ""
                         self.txtLevel.text! = (level ?? "") ?? ""
@@ -705,6 +815,32 @@ extension String {
         // here, `try!` will always succeed because the pattern is valid
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
+    var isPhoneNumber: Bool {
+        do {
+            let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.phoneNumber.rawValue)
+            let matches = detector.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+            if let res = matches.first {
+                return res.resultType == .phoneNumber && res.range.location == 0 && res.range.length == self.count && self.count == 10
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+    var isAdharNumber: Bool {
+        do {
+            let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.phoneNumber.rawValue)
+            let matches = detector.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+            if let res = matches.first {
+                return res.resultType == .phoneNumber && res.range.location == 0 && res.range.length == self.count && self.count == 12
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
     }
 
 }

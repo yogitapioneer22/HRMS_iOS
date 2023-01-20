@@ -26,6 +26,7 @@ class AddressDetailsVC: UIViewController {
     let stateDrop2 = DropDown()
     var stateList = [""]
     var sameAddress =  ""
+    var is_prefilled = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +34,7 @@ class AddressDetailsVC: UIViewController {
         state1()
         state2()
         callStateListApi()
+        joineedetailApi()
         
     }
     @IBAction func checkBoxAction(_ sender: Any) {
@@ -254,87 +256,7 @@ print(parameters)
                     }
                 }
 }
-    func joineedetailApi(){
-        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/joineedetail"
-        let headers:HTTPHeaders = [
-          
-        ]
-        LoadingOverlay.shared.showOverlay(view: view)
-        let appToken =  UserDefaults.standard.string(forKey: "token") ?? "NA"
-        let parameters = [
-            "token": appToken
-                ] as? [String:AnyObject]
-         print(parameters)
-        AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {
-                    response in
-            LoadingOverlay.shared.hideOverlayView()
-                    switch (response.result) {
-                    case .success(let value):
-                   let json = JSON(value)
-                        print(json)
-                        
-                        let message = json["msg"].string
-                        let status = json["status"].string
-                        //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
-                       // let title = json["data"].arrayValue.map {$0["title"].stringValue}
-            if status == "200"{
-                        let data = json["data"]["family_detail"].dictionary
-                        let mothername = data.map {$0["mothername"]?.stringValue}
-                        let motheroccupation = data.map {$0["motheroccupation"]?.stringValue}
-                        let other_relation = data.map {$0["other_relation"]?.stringValue}
-                        let spouse_dob = data.map {$0["spouse_dob"]?.stringValue}
-                        let fathercnt = data.map {$0["fathercnt"]?.stringValue}
-                        let fatheroccupation = data.map {$0["fatheroccupation"]?.stringValue}
-                        
-                        let other_dob = data.map {$0["other_dob"]?.stringValue}
-                        let mothercnt = data.map {$0["mothercnt"]?.stringValue}
-                        let father_dob = data.map {$0["father_dob"]?.stringValue}
-                        let wifename = data.map {$0["wifename"]?.stringValue}
-                        let other_occupation = data.map {$0["other_occupation"]?.stringValue}
-                        let other_contact = data.map {$0["other_contact"]?.stringValue}
-                        
-                        let fathername = data.map {$0["fathername"]?.stringValue}
-                        let wifecnt = data.map {$0["wifecnt"]?.stringValue}
-                        let mother_dob = data.map {$0["mother_dob"]?.stringValue}
-                        let is_prefilled = data.map {$0["is_prefilled"]?.stringValue}
-                        let kids = data.map {$0["kids"]?.stringValue}
-                        let other_name = data.map {$0["other_name"]?.stringValue}
-                        let spouse_occupation = data.map {$0["spouse_occupation"]?.stringValue}
-          
-                  // self.is_prefilled = is_prefilled! ?? ""
-//                        self.txtFatherName.text! = (fathername ?? "") ?? ""
-//                        self.txtFatherOccupation.text! = (fatheroccupation ?? "") ?? ""
-//                        self.txtFatherContact.text! = (fathercnt ?? "") ?? ""
-//                        
-//                        self.txtFatherDOB.text! = (father_dob ?? "") ?? ""
-//                        self.txtMotherName.text! = (mothername ?? "") ?? ""
-//                        self.txtMotherOccupation.text! = (motheroccupation ?? "") ?? ""
-//                        
-//                        self.txtMotherDOB.text! = (mother_dob ?? "") ?? ""
-//                        self.txtMotherContact.text! = (mothercnt ?? "") ?? ""
-//                        self.txtSpouse.text! = (wifename ?? "") ?? ""
-//                        
-//                        self.txtSpouseDOB.text! = (spouse_dob ?? "") ?? ""
-//                        self.txtSpouseOccupation.text! = (spouse_occupation ?? "") ?? ""
-//                        self.txtOtherRelation.text! = (other_relation ?? "") ?? ""
-//                        
-//                       // self.txtLanguage.text! = (language ?? "") ?? ""
-//                        self.txtRelation.text! = (other_relation ?? "") ?? ""
-//                        self.txtOccupation.text! = (other_occupation ?? "") ?? ""
-//                        self.txtContact.text! = (other_contact ?? "") ?? ""
-                       // self.txtDOB.text! = (DOB ?? "") ?? ""
-                       
-     
-                        
-                            }
-                        break
-                    case .failure:
-                        print(Error.self)
-                        
-                       
-                    }
-                }
-}
+
     func callStateListApi(){
         let loginUrl = AppConstants().baseUrl + "Newjoineelogin/statelist"
         let headers:HTTPHeaders = [
@@ -369,4 +291,62 @@ print(parameters)
         }
         
     }
+    func joineedetailApi(){
+        let loginUrl = AppConstants().baseUrl + "Newjoineelogin/joineedetail"
+        let headers:HTTPHeaders = [
+          
+        ]
+        LoadingOverlay.shared.showOverlay(view: view)
+        let appToken =  UserDefaults.standard.string(forKey: "token") ?? "NA"
+        let parameters = [
+            "token": appToken
+                ] as? [String:AnyObject]
+         print(parameters)
+        AF.request(loginUrl, method: .post, parameters: parameters! as Parameters, encoding: URLEncoding.default, headers: headers).responseJSON {
+                    response in
+            LoadingOverlay.shared.hideOverlayView()
+                    switch (response.result) {
+                    case .success(let value):
+                   let json = JSON(value)
+                        print(json)
+                        
+                        let message = json["msg"].string
+                        let status = json["status"].string
+                        //let data = json["data"]["personal_detail"].arrayValue.map {$0["fname"].stringValue}
+                       // let title = json["data"].arrayValue.map {$0["title"].stringValue}
+            if status == "200"{
+                        let data = json["data"]["address_detail"].dictionary
+                        let p_city = data.map {$0["p_city"]?.stringValue}
+                        let p_pincode = data.map {$0["p_pincode"]?.stringValue}
+                        let l_pincode = data.map {$0["l_pincode"]?.stringValue}
+                        let p_state = data.map {$0["p_state"]?.stringValue}
+                        let l_state = data.map {$0["l_state"]?.stringValue}
+                        let l_city = data.map {$0["l_city"]?.stringValue}
+                        let paddress = data.map {$0["paddress"]?.stringValue}
+                        
+                        let caddress = data.map {$0["caddress"]?.stringValue}
+                        let is_sameaddress = data.map {$0["is_sameaddress"]?.stringValue}
+                        let is_prefilled = data.map {$0["is_prefilled"]?.stringValue}
+                      self.sameAddress = (is_sameaddress ?? "NA") ?? "NA"
+                      self.is_prefilled = is_prefilled! ?? ""
+                        self.txtPermanentAdd.text! = (paddress ?? "") ?? ""
+                        self.txtLocalAdd.text! = (caddress ?? "") ?? ""
+                        self.txtState.text! = (p_state ?? "") ?? ""
+                        self.txtState2.text! = (l_state ?? "") ?? ""
+                        self.txtCity.text! = (p_city ?? "") ?? ""
+                        self.txtCity2.text! = (l_city ?? "") ?? ""
+                        self.txtPinCode.text! = (p_pincode ?? "") ?? ""
+                        self.txtPIN2.text! = (l_pincode ?? "") ?? ""
+
+                        
+                            }
+                        break
+                    case .failure:
+                        print(Error.self)
+                        
+                       
+                    }
+                }
+}
+
 }

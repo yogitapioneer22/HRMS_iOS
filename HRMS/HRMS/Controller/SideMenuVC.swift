@@ -159,11 +159,13 @@ class SideMenuVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
                         let message = json["msg"].string
                         let status = json["status"]
                         let data = json["data"].arrayValue
-  
+                        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+                         UserDefaults.standard.synchronize()
                         let refreshAlert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
 
                             refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                         //self.present(refreshAlert, animated: true, completion: nil)
+                                
                                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
                                 self.present(nextViewController, animated:true, completion:nil)
